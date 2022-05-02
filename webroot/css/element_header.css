@@ -1,0 +1,65 @@
+/* SEDUC DPID - Manuel Afonso 47061 em 20/03/2021 */
+@font-face{
+    font-family: Lato;
+    font-weight: 400;
+    src: url("../font/Lato-Regular.ttf");
+}
+body{
+    font-family: 'Lato', serif;
+    min-height: 100vh;
+	position: relative;
+}
+.bg-td8{ background-color: #105F88; }
+#header_background{ height:8em; width:100vw; }
+#imgLogo{ position:absolute; top:1.9em; left:2em; width:23.5em;}
+.headerContainer{
+    background-color: #fff;
+    border-bottom: 0.5em solid #105F88;
+    box-sizing: border-box;
+    min-height: 6.8em;
+    overflow: hidden;
+    position: relative;
+}
+.posicaoTitulo{ position: absolute; top:1.3em; left:45%; }
+.headerBtns{ position: absolute; right: 2em; top: 2.6em; }
+
+/* ----------------- Caps Lock ----------------- */
+#cps {
+    display: none;
+    height: 2.2em;
+    position: absolute; bottom: 0.3em; left: 0.7em;
+    width: 3.5em;
+}
+
+/* ------------------ Mostra Password ----------------- */
+.mostra_pass_eye { position: relative; }
+.mostra_pass {
+   color: #7e7e7e;
+   cursor: pointer;
+   position: absolute; right: 0.5em; top: 2.5em;
+}
+input[type="password"], input[type="text"], select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff !important;
+    border: 1px solid #d1d1d1;
+    border-radius: .3rem;
+    box-shadow: none;
+    box-sizing: inherit;
+    cursor: text;
+    height: 2rem;
+    padding: 0rem 0.5rem;
+    width: 100%;
+}
+
+@media screen and (max-width:969px)
+{
+    #header_background{ height:7em; }
+    #imgLogo{ position:absolute; top:1.8em; left:2em; width:20em;}
+    .headerBtns{ position: absolute; right: 1em; top: 2.2em; }
+}
+@media screen and (max-width:441px)
+{
+    .headerBtns{ position: absolute; right: 0.5em; top: 2.2em; }
+    #imgLogo{ position:absolute; top:2em; left:1.1em; width:18em; }
+}

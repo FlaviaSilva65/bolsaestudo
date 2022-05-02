@@ -1,0 +1,275 @@
+.grupo {
+    min-height: 100vh;
+    position: relative;
+}
+
+.allimpa {
+    clear: both;
+}
+
+.home {
+    z-index: 999;
+    width: 10%;
+    clear: both;
+    margin: 1% auto 0 auto;
+    Background: #B1073C;
+    Color: #fff;
+    Padding: 3%;
+    cursor: pointer;
+}
+
+.home a {
+
+    Color: #fff;
+
+}
+
+.home a:hover {
+
+    Color: #fff;
+    text-decoration: none;
+
+}
+
+.home:hover {
+
+    background: #660A32;
+
+}
+
+.btn-edit {
+    color: #FFFFFF;
+    background-color: #27ABE2;
+    border-radius: 0;
+    border: 0;
+    width: 130px !important;
+    height: 40px;
+    text-align: center;
+    /* margin-left: 5%; */
+    padding: 2px 0 5px 0 !important;
+}
+
+.btn-edit:hover {
+    color: #27ABE2 !important;
+    background-color: #FFFFFF !important;
+    transition: 0.3s !important;
+    text-decoration: none !important;
+}
+
+/* SEDUC DPID - Manuel Afonso 47061 em 23/05/2020 */
+
+/* ajustes rodapé */
+#logopg {
+    background: url("http://cidadaopg.sp.gov.br/termo/img/novopb.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 60px;
+    width: 150px;
+    /*margin-top:25px;*/
+}
+
+#logopg:hover {
+    background: url("http://cidadaopg.sp.gov.br/termo/img/novo.png") no-repeat scroll 0 0 transparent;
+}
+
+#logoseduc {
+    background: url("http://www.cidadaopg.sp.gov.br/imagens/elements/rodape/seduc_pb.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 55px;
+    width: 150px;
+    /*margin-top:25px;*/
+}
+
+#logoseduc:hover {
+    background: url("http://www.cidadaopg.sp.gov.br/imagens/elements/rodape/seduc.png") no-repeat scroll 0 0 transparent;
+}
+
+/* */
+
+/* SEDUC DPID - Manuel Afonso 47061 em 23/05/2020 */
+.side-nav li a:hover {
+    background-color: #e0e0e0 !important;
+    text-decoration: none;
+    transition: 0.2s all;
+}
+
+tr:nth-child(2n+1) {
+    background-color: #e3e3e3;
+}
+
+th a {
+    color: #17a2b8;
+}
+
+th {
+    text-align: center !important;
+}
+
+td {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* td:first-child {
+    text-align: left !important;
+} */
+
+th a:hover {
+    color: #125b67;
+}
+
+td {
+    font-size: 90% !important;
+    cursor: default;
+    padding: 0.3em !important;
+}
+
+span {
+    text-decoration: none;
+    cursor: default;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.btnAction {
+    text-decoration: none;
+    font-size: 80%;
+    color: white;
+    background-color: #17a2b8;
+    margin: 0.3em 0;
+    --padding-bottom: 0.2em;
+}
+
+.btnActionExc,
+.btnActionExc:focus {
+    text-decoration: none;
+    font-size: 80%;
+    color: white;
+    background-color: #dc3545;
+    margin: 0.3em 0;
+    --padding-bottom: 0.2em;
+}
+
+.btnActionEdit,
+.btnActionEdit:focus {
+    text-decoration: none;
+    font-size: 80%;
+    color: white;
+    background-color: #eea236;
+    margin: 0.3em 0;
+    --padding-bottom: 0.2em;
+}
+
+.btnActionEdit:hover {
+    background-color: #eea236;
+    color: white;
+}
+
+.btnActionDisabled {
+    font-size: 80%;
+    color: white;
+    background-color: gray;
+    margin: 0.3em 0;
+    --padding-bottom: 0.2em;
+}
+
+.btnAction:hover {
+    background-color: #127d8e;
+    color: white;
+}
+
+.btnActionExc:hover {
+    background-color: #a71d2b;
+    color: white;
+}
+
+label {
+    cursor: default;
+    font-weight: bold;
+}
+
+input {
+    border: 1px solid #c1c1c1;
+    padding-left: 0.3em;
+}
+
+.btnSub:hover {
+    border-bottom: 2px solid #125b67;
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.mostra_pass_eye {
+    position: relative;
+}
+
+#mostra_pass {
+    color: #7e7e7e;
+    cursor: pointer;
+    position: absolute;
+    right: 0.5em;
+    bottom: 0.7em;
+}
+
+#cps {
+    visibility: hidden;
+    margin-bottom: 0;
+}
+
+#cps span {
+    color: #7e7e7e;
+    font-size: 0.7em;
+    margin-top: -1em;
+}
+
+input[type="text"]:disabled,
+textarea:disabled {
+    background-color: #ffffff;
+    font-weight: normal;
+    margin-top: 0.2em;
+}
+
+textarea:disabled {
+    padding: 0.2em 0.5em;
+}
+
+select,
+select:hover {
+    background-color: #ffffff;
+}
+
+.btn-info:hover {
+    background-color: #125b67 !important;
+}
+
+.btn-info.focus,
+.btn-info:focus,
+.btn-info:active {
+    outline: none;
+    box-shadow: none;
+    background-color: #17a2b8;
+}
+
+select:invalid {
+    box-shadow: none;
+}
+
+.btn-print {
+    color: #FFFFFF;
+    background-color: #27ABE2;
+    border-radius: 0;
+    border: 0;
+    width: 130px !important;
+    height: 40px;
+    text-align: center;
+    /* margin-left: 5%; */
+    padding: 2px 0 5px 0 !important;
+}

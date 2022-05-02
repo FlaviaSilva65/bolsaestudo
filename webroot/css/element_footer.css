@@ -1,0 +1,71 @@
+/* SEDUC DPID - Manuel Afonso 47061 em 20/03/2021 */
+@font-face{
+    font-family: Lato;
+    font-weight: 400;
+    src: url("../font/Lato-Regular.ttf");
+}
+@font-face{
+    font-family: AllerRegular;
+    src: url("../font/Aller_Rg.ttf");
+}
+body{
+    font-family: 'Lato', serif;
+    min-height: 100vh;
+	position: relative;
+}
+
+/* ------------------ Footer ------------------ */
+footer {
+    background-color: #1D86BC;
+    border-top: 0.5em solid #105F88;
+	box-sizing: border-box;
+}
+.dpid p{
+    color: #ffffff;
+	font-size: 0.75em;
+    margin: 1.3em 0 0 0;
+}
+.dpid img{
+	float: left;
+	height: 3em;
+	margin-right: 1em;
+    margin-top: 0.5em;
+}
+.pmpg img{
+    float: right;
+	height: 4em;
+    margin-top: 0.1em;
+	margin-right: 1em;
+}
+.pmpg p{
+    color: #fff;
+    font-family: 'AllerBold';
+    float: right;
+    margin: 0;
+    margin-top: 0.4em;
+    text-align: center;
+    font-size: 0.95em;
+    line-height: 110%;
+}
+.pmpg span:first-of-type{ font-family: 'AllerRegular';font-size: 75%; font-weight: normal;}
+.pmpg span:last-of-type{ line-height: 1.5em;}
+.sf{ height: 6.7em; }
+@media screen and (max-width:969px)
+{
+    .dpid{ padding-right:0; padding-left:0.5em; }
+    .dpid p{ font-size: 60%; }
+    .dpid img{ height: 2.188em; margin-right: 0.5em; margin-top: 0.3em; }
+    .pmpg{ padding-right:0.5em; padding-left:0; }
+    .pmpg a p{ font-size: 0.7em; }
+    .pmpg img{ width: 2.8em; height:inherit; }
+}
+@media screen and (max-width:667px)
+{
+    .dpid p{ font-size: 50%; }
+    .dpid img{ height: 2.188em; margin-right: 0.5em; margin-top: 0em; }
+}
+@media screen and (max-width:441px)
+{
+    .pmpg a p{ font-size: 0.7em; }
+    .pmpg img{ width: 3em; height:inherit; }
+}

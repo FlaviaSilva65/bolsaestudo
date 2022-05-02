@@ -1,0 +1,13 @@
+Novas Atualizações do Sistema
+
+Alterei o Entity/Responsavel.php
+- incluido a tabela Escolas e o escola_id
+
+Alterei o Model/ResponsavelTable.php
+- incluindo $this->belongsTo('Escolas',[
+....
+
+Incluir o ResponsavelsController.php
+
+Incluir o diretório Responsavels e os arquivos 
+	add e o search.ctp

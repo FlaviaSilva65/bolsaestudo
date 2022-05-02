@@ -1,0 +1,121 @@
+/* SEDUC DPID - Manuel Afonso 47061 em 20/03/2021 */
+@font-face{
+    font-family: Lato;
+    font-weight: 400;
+    src: url("../font/Lato-Regular.ttf");
+}
+@font-face{
+    font-family: AllerBold;
+    src: url("../font/Aller_Bd.ttf");
+}
+@font-face{
+    font-family: AllerRegular;
+    src: url("../font/Aller_Rg.ttf");
+}
+:root {
+    --azul-c: #a1e1ff;
+    --azul-m: #1D86BC;
+    --azul-e: #105F88;
+    --verde-c: #86ff86;
+    --verde-m: #159f43;
+    --laranja-c: #ffd3a6;
+    --laranja-m: #ef3a07;
+    --cinza-c:#adabab;
+    --cinza-m:#A9A9A9;
+}
+body{
+    font-family: 'Lato', serif;
+    min-height: 100vh;
+	position: relative;
+}
+.in{ transition: .5s all; transform: rotate(-6deg); }
+.out{ transition: .5s all; transform: rotate(0deg); }
+a{ color:#333; }
+a:hover{ text-decoration: none; color:#333;}
+.fieldset-border{ border: 0.15em solid var(--azul-e); }
+.fieldset-legend > p { font-size: 1.1em;}
+.fieldset-legend > p > i { font-size: 1.5em;}
+.avisos-border{ border-bottom: 0.17em solid #6c757d; }
+.sombra{ box-shadow: 0.5em 0.5em 0.2em #bcbcbc; }
+.fs{ line-height: 1.4em; font-size:1.4em; }
+/* Avisos Informações */
+.image-aviso{ width:100%; height:6.438em; padding-left:0.5em; padding-right: 0.5em; }
+.publicado{
+    font-size:0.9em;
+    color: #fff;
+    margin-bottom: 0;
+    position: absolute; bottom: 0;
+    text-align: center;
+    width:100%;
+}
+.descricao, .fale-conosco, .fone{
+    font-weight: 700;
+    color: var(--azul-e);
+    margin-bottom: 0;
+    margin-left: 0.5em;
+    position: absolute; top: 1.5em;
+    text-align: center;
+    width: 100%;
+}
+
+.descricao, .fale-conosco{
+    font-size: 1.3em;
+}
+
+.fale-conosco{ top: 0.4em;}
+.fone{ top: 2em; bottom: 0.5em; color: #2a2a2a; font-size: 0.9em;}
+.icone, .icone-fone{
+    font-size: 2em;
+    color: #fff;
+    background-color: var(--azul-e);
+    border-radius: 10%;
+    padding: 0.2em;
+    position: absolute; left: 0.3em; top: 0;
+}
+.icone{ padding-left: 0.3em; padding-right: 0.3em; }
+
+/* Cores */
+.text-laranjaMedio { color: var(--laranja-m); }
+.text-laranjaClaro { color: var(--laranja-c); }
+.text-azulMedio { color: var(--azul-m); }
+.text-azulEscuro { color: var(--azul-e); }
+.text-verdeMedio { color: var(--verde-m); }
+.text-cinzaMedio {color: var(--cinza-m);}
+
+.bg-azulClaro { background-color: var(--azul-c); }
+.bg-azulEscuro { background-color: var(--azul-e); }
+.bg-verdeClaro { background-color: var(--verde-c); }
+.bg-cinzaClaro {background-color: var(--cinza-c); }
+.bg-laranjaClaro { background-color: var(--laranja-c); }
+.bg-laranjaMedio { background-color: var(--laranja-m); }
+
+/* cores Botões */
+.btn-azulClaro { background-color: var(--azul-c); }
+.btn-azulClaro:hover { background: linear-gradient(to left, rgba(0, 137, 208, 0.8), var(--azul-c)); }
+.btn-azulEscuro { background-color: var(--azul-e); }
+.btn-azulEscuro:hover { background: linear-gradient(to left, rgb(54, 163, 219), var(--azul-e)); }
+.btn-verdeClaro { background-color: var(--verde-c); }
+.btn-verdeClaro:hover { background: linear-gradient(to left, rgba(21, 159, 67, 0.8), var(--verde-c)); }
+.btn-cinzaClaro { background-color: var(--cinza-c); }
+.btn-cinzaClaro:hover { background: linear-gradient(to left, rgb(112, 112, 112), var(--cinza-c)); }
+.btn-laranjaClaro { background-color: var(--laranja-c); }
+.btn-laranjaClaro:hover { background: linear-gradient(to left, rgba(239, 58, 7, 0.8), var(--laranja-c)); }
+.btn-laranjaMedio { background-color: var(--laranja-m); }
+.btn-laranjaMedio:hover { background: linear-gradient(to left, rgba(239, 58, 7, 0.8), var(--laranja-m)); }
+@media screen and (max-width:441px)
+{
+    .fieldset-legend > p { font-size: 0.9em; }
+    .fieldset-legend > p > i { font-size: 1.4em;}
+}
+@media screen and (max-width:767px)
+{
+.fone{ padding-top: 0.5em; font-size: 0.7em;}
+}
+@media screen and (max-width:991px)
+{
+.fone{ padding-top: 0.5em; font-size: 0.9em;}
+}
+@media screen and (max-width:1199px)
+{
+.fone{  padding-top: 0.5em; font-size: 0.9em;}
+}
