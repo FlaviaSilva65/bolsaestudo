@@ -21,7 +21,7 @@ class ResponsavelsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['add', 'search']);
+        $this->Auth->allow(['add', 'search', 'opcaoBolsa']);
     }
 
     public function add()
@@ -52,17 +52,25 @@ class ResponsavelsController extends AppController
             $inscricao = true;
         }
 
-        if ($this->request->is('post')) {
+        if ($this->request->is(['patch', 'post', 'put'])) {
             $id = $this->request->getData('id');
             // if (isset($this->request->getData('id'))) {
             if ($id !== null) {
-                $responsavel = $this->Responsavels->get($this->request->getData('id'));
-            } else {
+                $responsavel = $this->Responsavels->get($id);
                 $responsavel = $this->Responsavels->patchEntity($responsavel, $this->request->getData());
+            } //else {
+            $responsavel = $this->Responsavels->patchEntity($responsavel, $this->request->getData());
+
+            // debug($responsavel);
+            // debug($this->request->getData());
+            // die;
+
+            if ($this->Responsavels->save($responsavel)) {
+                $this->Flash->success('Cadastro salvo com sucesso!');
+                return $this->redirect(['action' => 'opcaoBolsa', $responsavel->id]);
             }
-            debug($responsavel);
-            debug($this->request->getData());
-            die;
+            //}
+
         }
 
         $this->set('responsavel', $responsavel);
@@ -92,5 +100,12 @@ class ResponsavelsController extends AppController
                 'escolas' => $escolas
             ]);
         endif;
+    }
+
+    public function opcaoBolsa($id = null)
+    {
+        $responsavel = $this->Responsavels->get($id);
+
+        $this->set('responsavel', $responsavel);
     }
 }

@@ -27,7 +27,7 @@ class CandidatosController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['add', 'imprimir', 'login', 'index', 'view', 'opcoesTipos', 'opcoesAnos', 'recurso', 'enviarRecurso', 'imprimirRecurso']);
+        $this->Auth->allow(['add', 'addCand', 'imprimir', 'login', 'index', 'view', 'opcoesTipos', 'opcoesAnos', 'recurso', 'enviarRecurso', 'imprimirRecurso']);
     }
 
     public function initialize()
@@ -355,12 +355,12 @@ class CandidatosController extends AppController
                 $vlCtNumero = $this->request->getData('vl_ctnumero');
                 $nmResp = (str_replace($this->request->getData('nm_mae'), '.', ' '));
 
-                $teste = 'Rui alcantara machado';
-                $teste1 = (ucwords($teste));
-                // debug($this->request->getData('nm_mae'));
+                // $teste = 'Rui alcantara machado';
+                // $teste1 = (ucwords($teste));
+                // // debug($this->request->getData('nm_mae'));
 
-                debug($teste1);
-                die;
+                // debug($teste1);
+                // die;
 
 
                 $buscaCandidatoBE = $this->Candidatos->find()
@@ -372,12 +372,6 @@ class CandidatosController extends AppController
                         // 'nm_mae like' => '%' . $nmResp . '%'
                     ])
                     ->first();
-                // debug($nmCandidato);
-                // debug($vlCtNumero);
-                // // debug($nmResp);
-
-                // debug($buscaCandidatoBE);
-                // die;
 
                 if ($buscaCandidatoBE != '') {
                     $this->Flash->error('Candidato já possui cadastro.');
@@ -433,17 +427,6 @@ class CandidatosController extends AppController
                             'errodsprof' => ($candidato['responsavel']->getErrors()['ds_profissao']['_empty'] ?? ''),
                             'errotermo' => ('Campo necessário.')
                         ]);
-
-                        // if ($concessao_escola !== '') {
-
-                        //     $concessao = $concessao_escola + 0;
-
-                        //     $candidato->responsavel->concessao_escola = $this->Escolas->find()
-                        //         ->where(['id' => $concessao])
-                        //         ->select(['nm_escola'])
-                        //         ->first()
-                        //         ->nm_escola;
-                        // }
                     }
 
                     $vl_cpf =  $this->request->getData('vl_cpf');
@@ -488,6 +471,158 @@ class CandidatosController extends AppController
         $anos = $this->Candidatos->Anos->find('list', ['limit' => 200]);
         $this->set(compact('candidato', 'responsavel', 'escolas', 'tipos', 'anos'));
     }
+
+    public function addCand($id = null)
+    {
+        $this->loadModel('Inscricoes');
+        $this->loadModel('TpEventos');
+        $this->loadModel('Eventos');
+        $this->loadModel('Responsavels');
+        $this->loadModel('Escolas');
+
+        $candidato = $this->Candidatos->newEntity();
+
+        $ano = date('Y');
+        $hoje = date('Y-m-d');
+
+        $evento = $this->Eventos->find()
+            ->where(['tp_eventos_id' => 1])
+            ->last();
+
+        if ($hoje >= $evento->dt_inicio) {
+            $inscrInicio = true;
+        } else {
+            $inscrInicio = false;
+        }
+        if ($hoje <= date_format($evento->dt_fim, "Y-m-d")) {
+            $inscrFim = true;
+        } else {
+            $inscrFim = false;
+        }
+
+        if ($inscrInicio == true && $inscrFim == true) {
+            $inscricao = true;
+
+            if ($id != null) {
+                $responsavel = $this->Responsavels->get($id);
+            }
+
+            if ($this->request->is('post')) {
+
+                $nmCandidato = $this->request->getData('nm_candidato');
+                $vlCtNumero = $this->request->getData('vl_ctnumero');
+                $nmResp = (str_replace($this->request->getData('nm_mae'), '.', ' '));
+
+
+                $buscaCandidatoBE = $this->Candidatos->find()
+                    // ->contain(['responsavels'])
+                    ->where([
+                        'nm_candidato like' => '%' . $nmCandidato . '%',
+                        'vl_ctnumero' => $vlCtNumero,
+                        // '(replace(nm_mae,".", " ")) like' => '%' . $nmResp . '%'
+                        // 'nm_mae like' => '%' . $nmResp . '%'
+                    ])
+                    ->first();
+
+                if ($buscaCandidatoBE != '') {
+                    $this->Flash->error('Candidato já possui cadastro.');
+                    return $this->redirect(['action' => 'view', $buscaCandidatoBE->id]);
+                }
+
+                $buscaCandidato = ConnectionManager::get('bancoBolsaAtleta')->newQuery()
+                    ->select(['id', 'nm_candidato', 'nm_mae'])->from('candidatos')
+                    ->where([
+                        'nm_candidato like' => '%' . $nmCandidato . '%',
+                        'vl_ctnumero' => $vlCtNumero,
+                        // 'nm_mae like' => '%' . $nmResp . '%'
+                    ])->execute()->fetch('assoc');
+
+                $dadoResp = $this->request->getData(['responsavel']);
+                $concessao_escola = $dadoResp['concessao_escola'];
+
+                if ($buscaCandidato != '') {
+
+                    $this->Flash->error('Candidato já cadastrado em outra modalidade de Bolsa.');
+                    return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+                } else {
+
+                    if (isset($responsavel->id)) {
+
+                        $candidato = $this->Candidatos->patchEntity($candidato, $this->request->getData());
+                        // $candidato->responsavel = [];
+                        $candidato->responsavel_id = $responsavel->id;
+                        $responsavel = $this->Responsavels->patchEntity($responsavel, $dadoResp);
+                        // if ($concessao_escola !== '') {
+                        //     $concessao = $concessao_escola + 0;
+                        //     $responsavel->concessao_escola = $this->Escolas->find()
+                        //         ->where(['id' => $concessao])
+                        //         ->select(['nm_escola'])
+                        //         ->first()
+                        //         ->nm_escola;
+                        // }
+                        $this->Responsavels->save($responsavel);
+                        $this->set([
+                            'errodt' => ($candidato->getErrors()['dt_nascimento']['_empty'] ?? ''),
+                            'erroanoant' => ($candidato->getErrors()['ic_ano_anterior']['_empty'] ?? ''),
+                            'erroicdef' => ($candidato->getErrors()['ic_deficiente']['_empty'] ?? ''),
+
+                            'errotermo' => ('Campo necessário.')
+                        ]);
+                    } else {
+                        $candidato = $this->Candidatos->patchEntity($candidato, $this->request->getData());
+
+                        $this->set([
+                            'errodt' => ($candidato->getErrors()['dt_nascimento']['_empty'] ?? ''),
+                            'erroanoant' => ($candidato->getErrors()['ic_ano_anterior']['_empty'] ?? ''),
+                            'erroicdef' => ($candidato->getErrors()['ic_deficiente']['_empty'] ?? ''),
+                            'errodsprof' => ($candidato['responsavel']->getErrors()['ds_profissao']['_empty'] ?? ''),
+                            'errotermo' => ('Campo necessário.')
+                        ]);
+                    }
+
+                    $vl_cpf =  $this->request->getData('vl_cpf');
+
+                    $retorno = $this->Candidatos->Responsavels->find()
+                        ->where(['vl_cpf LIKE' => $vl_cpf])
+                        ->first();
+
+                    if ($this->Candidatos->save($candidato)) {
+
+                        $tp_eventos = $this->TpEventos->find()
+                            ->where(['nm_tp_evento LIKE' => '%Inscrição%'])
+                            ->first();
+
+                        $ano = date('Y');
+
+                        $evento = $this->Eventos->find()
+                            ->where(['tp_eventos_id' => $tp_eventos->id, 'ano_evento' => $ano])
+                            ->first();
+
+                        $inscricao = $this->Inscricoes->newEntity();
+                        $inscricao->evento_id = $evento->id;
+                        $inscricao->candidato_id = $candidato->id;
+                        $inscricao->responsavel_id = $candidato->responsavel_id;
+                        $inscricao->pontos = $candidato->ds_moradia + $candidato->ds_dependentes + $candidato->ds_rendafamiliar + $candidato->ds_transporte;
+
+                        if ($this->Inscricoes->save($inscricao)) {
+                            $this->Flash->success('informações enviadas com sucesso');
+                        }
+
+                        return $this->redirect(['action' => 'imprimir', $candidato->id]);
+                    }
+                }
+            }
+        } else {
+            $this->Flash->error('Fora do Período de Inscrição.');
+            return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+        }
+
+        $escolas = $this->Candidatos->Escolas->find('list', ['limit' => 200])->where(['ic_ativo' => 1]);
+        $tipos = $this->Candidatos->Tipos->find('list', ['limit' => 200]);
+        $anos = $this->Candidatos->Anos->find('list', ['limit' => 200]);
+        $this->set(compact('candidato', 'responsavel', 'escolas', 'tipos', 'anos'));
+    }
+
 
     public function opcoesTipos()
     {

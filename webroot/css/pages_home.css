@@ -18,6 +18,7 @@
     --azul-e: #105F88;
     --verde-c: #86ff86;
     --verde-m: #159f43;
+    --verde-md: #128F3C;
     --laranja-c: #ffd3a6;
     --laranja-m: #ef3a07;
     --cinza-c:#adabab;
@@ -79,6 +80,7 @@ a:hover{ text-decoration: none; color:#333;}
 .text-laranjaClaro { color: var(--laranja-c); }
 .text-azulMedio { color: var(--azul-m); }
 .text-azulEscuro { color: var(--azul-e); }
+.text-verdeClaro { color: var(--verde-c); }
 .text-verdeMedio { color: var(--verde-m); }
 .text-cinzaMedio {color: var(--cinza-m);}
 
@@ -96,6 +98,8 @@ a:hover{ text-decoration: none; color:#333;}
 .btn-azulEscuro:hover { background: linear-gradient(to left, rgb(54, 163, 219), var(--azul-e)); }
 .btn-verdeClaro { background-color: var(--verde-c); }
 .btn-verdeClaro:hover { background: linear-gradient(to left, rgba(21, 159, 67, 0.8), var(--verde-c)); }
+.btn-verdeMedio {background-color: var(--verde-md); }
+.btn-verdeMedio:hover { background: linear-gradient(to left, rgba(16, 128, 54, 0.8), var(--verde-m)); }
 .btn-cinzaClaro { background-color: var(--cinza-c); }
 .btn-cinzaClaro:hover { background: linear-gradient(to left, rgb(112, 112, 112), var(--cinza-c)); }
 .btn-laranjaClaro { background-color: var(--laranja-c); }
